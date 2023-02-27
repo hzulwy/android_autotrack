@@ -1,0 +1,27 @@
+apply plugin: 'groovy'//gradle会根据插件的名称，找到这个插件并且调用插件里面的apply方法
+apply plugin:  'maven-publish'
+
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi() //buildSrc目录下可以不引用gradleApi
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.4.3'
+}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri('../repo'))
+//            pom.groupId = 'com.brett.auto.track'
+//            pom.artifactId = 'plugin'
+//            pom.version = '1.0.0'
+//        }
+//    }
+//}
+

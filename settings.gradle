@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
     }
 }
 dependencyResolutionManagement {
@@ -10,8 +11,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
     }
 }
 rootProject.name = "android_autotrack"
 include ':app'
 include ':track_sdk'
+include ':plugin'
