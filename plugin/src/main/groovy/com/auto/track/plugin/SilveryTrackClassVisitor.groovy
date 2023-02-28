@@ -10,6 +10,7 @@ import org.objectweb.asm.Type
 class SilveryTrackClassVisitor extends ClassVisitor implements Opcodes {
     private ClassVisitor classVisitor
     private String[] mInterfaces
+    private final static String SDK_API_CLASS = "com/auto/track/sdk/appOnClick/SilveryTrackHelper"
 
     private HashMap<String, SilveryTrackMethodCell> mLambdaMethodCells = new HashMap<>()
 

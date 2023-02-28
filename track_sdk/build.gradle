@@ -3,12 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.auto.track.sdk'
-    compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
-        minSdk 21
-        targetSdk 31
+        minSdkVersion 21
+        targetSdkVersion 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
