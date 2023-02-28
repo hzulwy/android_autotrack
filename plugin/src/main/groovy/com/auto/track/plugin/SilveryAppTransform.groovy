@@ -27,7 +27,7 @@ class SilveryAppTransform extends Transform {
 
     @Override
     String getName() {
-        return "sensorsAnalytics"
+        return "silveryAutoTrack"
     }
 
     /**
@@ -84,7 +84,7 @@ class SilveryAppTransform extends Transform {
                     /**遍历以某一扩展名结尾的文件*/
                     dir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
                         File classFile ->
-                            if (SensorsAnalyticsClassModifier.isShouldModify(classFile.name)) {
+                            if (SilveryTrackClassModifier.isShouldModify(classFile.name)) {
                                 File modified = null
                                 if (!extension.disableAppClick) {
                                     modified = SilveryTrackClassModifier.modifyClassFile(dir, classFile, context.getTemporaryDir())
