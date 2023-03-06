@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.auto.track.plugin'
+//apply plugin: 'com.auto.track.plugin'
 
 android {
     compileSdkVersion 33

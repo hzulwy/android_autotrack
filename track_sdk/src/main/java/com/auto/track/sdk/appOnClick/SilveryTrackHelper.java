@@ -14,6 +14,8 @@ import com.auto.track.sdk.base.Utils;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class SilveryTrackHelper {
 
     @Keep
@@ -70,6 +72,26 @@ public class SilveryTrackHelper {
             if (activity != null) {
                 jsonObject.put("activity", activity.getClass().getCanonicalName());
             }
+
+            AutoTrackAPI.getInstance().track("AppClick", jsonObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Keep
+    public static void trackViewOnClick(View view, Map<String, Object> map) {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("element_type", Utils.getElementType(view));
+            jsonObject.put("element_id", Utils.getViewId(view));
+            jsonObject.put("element_content", Utils.getElementContent(view));
+
+            Activity activity = Utils.getActivityFromView(view);
+            if (activity != null) {
+                jsonObject.put("activity", activity.getClass().getCanonicalName());
+            }
+            Utils.mapToJson(jsonObject,map);
 
             AutoTrackAPI.getInstance().track("AppClick", jsonObject);
         } catch (Exception e) {

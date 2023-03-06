@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.auto.track.sdk.AutoTrackAPI;
+import com.auto.track.sdk.appOnClick.SilveryTrackHelper;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private final static int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
@@ -35,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("name", "brett");
+                map.put("age", 24);
+                SilveryTrackHelper.trackViewOnClick(v, map);
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
@@ -54,31 +61,31 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Log.e("MainActivity","onRequestPermissionsResult");
+        Log.e("MainActivity", "onRequestPermissionsResult");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("MainActivity","onResume");
+        Log.e("MainActivity", "onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e("MainActivity","onPause");
+        Log.e("MainActivity", "onPause");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e("MainActivity","onStart");
+        Log.e("MainActivity", "onStart");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e("MainActivity","onStop");
+        Log.e("MainActivity", "onStop");
         AutoTrackAPI.getInstance().removeIgnoredActivity(MainActivity.class);
     }
 }

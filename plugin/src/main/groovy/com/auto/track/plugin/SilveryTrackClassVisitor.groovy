@@ -173,9 +173,10 @@ class SilveryTrackClassVisitor extends ClassVisitor implements Opcodes {
                 if (s == "Lcom/auto/track/sdk/appOnClick/SilveryTrackViewOnClick;") {
                     isTrackViewOnClickAnnotation = true
                 }
-                return super.visitAnnotation(desc, visible)
+                return super.visitAnnotation(s, visible)
             }
         }
+        return methodVisitor
     }
 
     /**

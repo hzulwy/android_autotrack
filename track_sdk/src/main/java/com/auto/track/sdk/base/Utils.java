@@ -21,7 +21,10 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.widget.SwitchCompat;
 
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
+import java.util.Map;
 import java.util.UUID;
 
 public class Utils {
@@ -339,6 +342,18 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    public static void mapToJson(JSONObject data, Map<String, Object> map) {
+        try {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                if (!data.has(entry.getKey())) {
+                    data.putOpt(entry.getKey(), entry.getValue());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -7,11 +7,16 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.auto.track.sdk.base.Event;
 import com.auto.track.sdk.base.Utils;
+import com.auto.track.sdk.manager.StorageManager;
+import com.auto.track.sdk.manager.TimerManager;
 
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.UUID;
+
 import android.os.Process;
 
 @Keep
@@ -42,6 +47,14 @@ public class AutoTrackAPI {
     private AutoTrackAPI(Application application) {
         mDeviceId = Utils.getAndroidID(application.getApplicationContext());
         mDeviceInfo = AutoTrackPrivate.getDeviceInfo(application.getApplicationContext());
+        StorageManager.getInstance().init(application);
+        TimerManager.getInstance().init();
+        TimerManager.getInstance().setTimerTask(new Runnable() {
+            @Override
+            public void run() {
+                //TODO 将埋点数据上传到后台
+            }
+        });
         if (flag) {
             AutoTrackPrivate.registerActivityLifecycleCallbacks(application);
             AutoTrackPrivate.registerActivityStateObserver(application);
@@ -78,7 +91,8 @@ public class AutoTrackAPI {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("event", eventName);
             jsonObject.put("device_id", mDeviceId);
-            jsonObject.put("process_id",Process.myPid());
+            jsonObject.put("process_id", Process.myPid());
+            jsonObject.put("log_id", UUID.randomUUID().toString());
 
             JSONObject sendProperties = new JSONObject(mDeviceInfo);
 
@@ -89,6 +103,8 @@ public class AutoTrackAPI {
             jsonObject.put("properties", sendProperties);
             jsonObject.put("time", System.currentTimeMillis());
 
+
+            StorageManager.getInstance().add(new Event(jsonObject));
             Log.i(TAG, Utils.formatJson(jsonObject.toString()));
         } catch (Exception e) {
             e.printStackTrace();
