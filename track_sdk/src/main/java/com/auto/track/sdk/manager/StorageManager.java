@@ -44,7 +44,7 @@ public class StorageManager {
         }
         if(dbResult) {
             mEvnets.add(event);
-            LogUtil.d("event size:"+mEvnets.size());
+            LogUtil.d("add event size:"+mEvnets.size());
         }
     }
 
@@ -59,7 +59,7 @@ public class StorageManager {
         }
         if(dbResult) {
             mEvnets.remove(event);
-            LogUtil.d("event size:"+mEvnets.size());
+            LogUtil.d("delete event size:"+mEvnets.size());
         }
     }
 
@@ -76,7 +76,7 @@ public class StorageManager {
         }
         if(dbResult) {
             mEvnets.removeAll(events);
-            LogUtil.d("event size:"+mEvnets.size());
+            LogUtil.d("deletes event size:"+mEvnets.size());
         }
     }
 

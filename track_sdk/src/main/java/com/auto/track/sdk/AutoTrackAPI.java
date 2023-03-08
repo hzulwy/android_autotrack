@@ -1,6 +1,7 @@
 package com.auto.track.sdk;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.Keep;
@@ -10,7 +11,9 @@ import androidx.annotation.Nullable;
 import com.auto.track.sdk.base.Event;
 import com.auto.track.sdk.base.Utils;
 import com.auto.track.sdk.manager.StorageManager;
+import com.auto.track.sdk.manager.ThreadServiceManager;
 import com.auto.track.sdk.manager.TimerManager;
+import com.auto.track.sdk.manager.UploadManager;
 
 import org.json.JSONObject;
 
@@ -52,13 +55,19 @@ public class AutoTrackAPI {
         TimerManager.getInstance().setTimerTask(new Runnable() {
             @Override
             public void run() {
-                //TODO 将埋点数据上传到后台
+                // 切换线程，将埋点数据上传到后台
+                ThreadServiceManager.getInstance().changeThread(application.getApplicationContext());
             }
         });
         if (flag) {
             AutoTrackPrivate.registerActivityLifecycleCallbacks(application);
             AutoTrackPrivate.registerActivityStateObserver(application);
         }
+    }
+
+    @Keep
+    public static void setServerUrl(String url){
+        UploadManager.getInstance().setServerUrl(url);
     }
 
     @Keep
@@ -104,7 +113,7 @@ public class AutoTrackAPI {
             jsonObject.put("time", System.currentTimeMillis());
 
 
-            StorageManager.getInstance().add(new Event(jsonObject));
+            ThreadServiceManager.getInstance().changeTreadAddData(new Event(jsonObject));
             Log.i(TAG, Utils.formatJson(jsonObject.toString()));
         } catch (Exception e) {
             e.printStackTrace();
