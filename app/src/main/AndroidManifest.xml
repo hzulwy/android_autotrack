@@ -18,6 +18,7 @@
         android:theme="@style/Theme.Android_autotrack"
         tools:targetApi="31">
         <activity
+            android:process=":test"
             android:name=".MainActivity2"
             android:exported="false">
             <meta-data

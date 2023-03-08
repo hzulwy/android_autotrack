@@ -3,6 +3,7 @@ package com.mvp.android_autotrack;
 import android.app.Application;
 
 import com.auto.track.sdk.AutoTrackAPI;
+import com.auto.track.sdk.base.LogUtil;
 
 public class MyApplication extends Application {
 
