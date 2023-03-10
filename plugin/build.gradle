@@ -12,7 +12,7 @@ sourceSets {
 dependencies {
     implementation gradleApi() //buildSrc目录下可以不引用gradleApi
     implementation localGroovy()
-    implementation 'com.android.tools.build:gradle:3.4.3'
+    compileOnly 'com.android.tools.build:gradle:3.4.3'
 }
 uploadArchives {
     repositories {

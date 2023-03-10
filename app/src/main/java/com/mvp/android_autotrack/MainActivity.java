@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("name", "brett");
                 map.put("age", 24);
-                SilveryTrackHelper.trackViewOnClick(v, map);
+//                SilveryTrackHelper.trackViewOnClick(v, map);
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }

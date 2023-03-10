@@ -4,6 +4,7 @@ import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.Attribute
 import org.objectweb.asm.Label
 import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.Opcodes
 import org.objectweb.asm.commons.AdviceAdapter
 
 class DefaultMethodVisitor extends AdviceAdapter{
